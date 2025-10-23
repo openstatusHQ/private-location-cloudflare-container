@@ -16,9 +16,9 @@ export class MyContainer extends Container<Env> {
     console.log("Container successfully started");
   }
 
-  override onStop() {
+  override async onStop() {
     console.log("Container successfully shut down");
-    this.start({
+    await this.start({
       // startOptions: {
         envVars: {
           OPENSTATUS_KEY: this.env.OPENSTATUS_KEY,
