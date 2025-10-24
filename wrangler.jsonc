@@ -15,7 +15,7 @@
 	},
  "triggers": {
     "crons": [
-      "*/10 * * * *" // Run every 2 minutes
+      "*/2 * * * *" // Run every 2 minutes
     ]
   },
 	/**
@@ -51,8 +51,9 @@
 	"containers": [
 		{
 			"class_name": "MyContainer",
-			"image": "./Dockerfile",
-			// "image": "registry.cloudflare.com/699a6271aadf106c03b2081dee12a519/openstatus-private-location:cf",
+			//  Use image docker for dev
+			// "image": "./Dockerfile",
+			"image": "registry.cloudflare.com/699a6271aadf106c03b2081dee12a519/openstatus-private-location:cf",
 			"max_instances": 1
 		}
 	],

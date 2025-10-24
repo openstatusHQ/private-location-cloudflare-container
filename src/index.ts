@@ -5,7 +5,7 @@ export class MyContainer extends Container<Env> {
   // Port the container listens on (default: 8080)
   defaultPort = 8080;
   // Time before container sleeps due to inactivity (default: 30s)
-  sleepAfter = "15m";
+  sleepAfter = "150s";
   // Environment variables passed to the container
   envVars = {
     MESSAGE: "I was passed in via the container class!",
@@ -20,11 +20,11 @@ export class MyContainer extends Container<Env> {
     console.log("Container successfully shut down");
     await this.start({
       // startOptions: {
-        envVars: {
-          OPENSTATUS_KEY: this.env.OPENSTATUS_KEY,
-        },
+      envVars: {
+        OPENSTATUS_KEY: this.env.OPENSTATUS_KEY,
+      },
       // },
-    })
+    });
   }
 
   override onError(error: unknown) {
@@ -49,20 +49,15 @@ export default {
   async scheduled(_controller: any, env: Env) {
     try {
       const container = getContainer(env.MY_CONTAINER);
-
-      const containerState = await container.getState();
-      if (containerState.status !== "healthy" && containerState.status !== "running") {
-        await container.start({
-            envVars: {
-              OPENSTATUS_KEY: env.OPENSTATUS_KEY,
-            },
-        });
-      }
-      // else {
-      //   container.renewActivityTimeout();
-      // }
+      await container.start({
+        envVars: {
+          OPENSTATUS_KEY: env.OPENSTATUS_KEY,
+        },
+      });
     } catch (e) {
       console.error("Error in scheduled task:", e);
     }
+
+    return new Response("ok");
   },
 };
