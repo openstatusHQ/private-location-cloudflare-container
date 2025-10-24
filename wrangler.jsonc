@@ -53,7 +53,7 @@
 			"class_name": "MyContainer",
 			//  Use image docker for dev
 			// "image": "./Dockerfile",
-			"image": "registry.cloudflare.com/699a6271aadf106c03b2081dee12a519/openstatus-private-location:cf",
+			"image": "registry.cloudflare.com/699a6271aadf106c03b2081dee12a519/openstatus-private-location:cf-1",
 			"max_instances": 1
 		}
 	],
